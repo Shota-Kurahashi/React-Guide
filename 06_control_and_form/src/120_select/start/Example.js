@@ -1,10 +1,26 @@
+import { useState } from "react";
+
 const Example = () => {
+  const [fruits, setFruits] = useState(["Apple", "Banana", "Cherry"]);
+  const [selectedValue, setSelectedValue] = useState(fruits[0]);
   return (
-    <p style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center" }}>
       startフォルダの内容が表示されます。
       <br />
-      練習用に使ってください！
-    </p>
+      <select
+        name="fruit"
+        id=""
+        value={selectedValue}
+        onChange={(e) => setSelectedValue(e.target.value)}
+      >
+        {fruits.map((fruit) => (
+          <option key={fruit} value={fruit}>
+            {fruit}
+          </option>
+        ))}
+      </select>
+      <p>選択されているのは{selectedValue}です。</p>
+    </div>
   );
 };
 

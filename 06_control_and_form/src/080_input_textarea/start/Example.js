@@ -3,7 +3,8 @@ const Example = () => {
     <p style={{ textAlign: "center" }}>
       startフォルダの内容が表示されます。
       <br />
-      練習用に使ってください！
+      <textarea name="" id="" cols="30" rows="10" />
+      <input type="text" />
     </p>
   );
 };
