@@ -20,20 +20,25 @@ export const Todo = () => {
       checked: false,
     },
   ];
-  const [filterTodo, setFilterTodo] = useState(todosList);
+  const [todos, setTodos] = useState(todosList);
+
+  const addTodo = (value) => {
+    setTodos([
+      ...todos,
+      { id: todos.length + 1, content: value, checked: false },
+    ]);
+  };
+
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
 
   return (
-    <>
-      <ul>
-        {filterTodo.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            todoState={[filterTodo, setFilterTodo]}
-          />
-        ))}
-      </ul>
-      <TodoInput todoState={[filterTodo, setFilterTodo]} />
-    </>
+    <ul>
+      {todos.map((todo) => (
+        <TodoItem todo={todo} deleteTodo={deleteTodo} key={todo.id} />
+      ))}
+      <TodoInput addTodo={addTodo} />
+    </ul>
   );
 };
