@@ -1,24 +1,41 @@
+.App-start {
+  overflow: hidden;
+}
+
 .App-start .container .toast {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 10px;
-  transform: translateY(100%);
+
   z-index: 100;
   display: none;
 }
 .App-start .container .toast.is-visible {
-  transform: translateY(0);
-  transition: transform 0.3s ease-in;
   display: block;
+  animation: toast-container 4s cubic-bezier(0.79, 0.35, 0.37, 1.25) forwards;
 }
 
 .App-start .container .toast__content {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 8px gray;
+  background-color: #fff;
+  border-radius: 5px;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 12px 50px;
+}
+
+.App-start .container .toast__content::after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: red;
+  animation: toast 3s forwards;
 }
 
 .App-start .container .toast__button {
@@ -38,4 +55,30 @@
 
 .App-start .container .toast__button:active {
   opacity: 0.3;
+}
+
+@keyframes toast {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes toast-container {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  12% {
+    transform: translateX(0);
+  }
+
+  94% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
