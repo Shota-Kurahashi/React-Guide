@@ -13,7 +13,6 @@ const Form = ({ createTodo }) => {
         status: "error",
         duration: 2000,
         isClosable: true,
-        description: "入力してください",
       });
       return;
     }
