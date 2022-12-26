@@ -16,19 +16,19 @@ const reducer = (prev, { type, step }) => {
     case "-":
       return prev - step;
     default:
-      throw new Error('不明なactionです。')
+      throw new Error("不明なactionです。");
   }
-}
+};
 
 // 不変性（Immutability）
 const Example = () => {
   const [state, setState] = useState(0);
   const [rstate, dispatch] = useReducer(reducer, 0);
-  
-  const step = 2;
+
   const countUp = () => {
+    const step = 2;
     setState((prev) => {
-      return prev + step
+      return prev + step;
     });
   };
   const rcountUp = () => {
