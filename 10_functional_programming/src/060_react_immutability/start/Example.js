@@ -1,20 +1,24 @@
 import { useState } from "react";
 
-const Child = (props) => {
+const Child = ({ state, setState }) => {
+  const increment = () => {
+    setState((prevState) => ({ value: prevState.value + 1 }));
+  };
   return (
     <>
-      <span>{props.state.value}</span>
+      <span>{state.value}</span>
+      <button onClick={increment}>+</button>
     </>
   );
 };
 
 const Example = () => {
-  const [ state, setState ] = useState({ value: 0 });
+  const [state, setState] = useState({ value: 0 });
 
   return (
     <>
       <div>
-        <Child state={state}/>
+        <Child state={state} setState={setState} />
       </div>
     </>
   );
