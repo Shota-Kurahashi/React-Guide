@@ -3,13 +3,13 @@ import Child from "./Child";
 
 const Example = () => {
   console.log("Parent render");
-  
+
   const [countA, setCountA] = useState(0);
   const [countB, setCountB] = useState(0);
 
   const clickHandler = useCallback(() => {
     setCountB((pre) => pre + 1);
-  }, [])
+  }, []);
 
   return (
     <div className="parent">
