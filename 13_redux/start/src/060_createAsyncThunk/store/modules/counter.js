@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { asyncCount } from "../../api/counter"
+import { asyncCount } from "../../api/counter";
 
 const counter = createSlice({
-  name: 'counter',
+  name: "counter",
   initialState: {
-    count: 0
+    count: 0,
   },
   reducers: {
     add(state, { type, payload }) {
@@ -19,8 +19,8 @@ const counter = createSlice({
       // const newState = { ...state };
       // newState.count = state.count - payload
       // return newState;
-    }
-  }
+    },
+  },
 });
 
 const { add, minus } = counter.actions;
@@ -31,9 +31,8 @@ const addAsync = (payload) => {
     console.log(state);
     const response = await asyncCount(payload);
     dispatch(add(response.data));
-  }
-}
+  };
+};
 
-
-export { add, minus, addAsync }
-export default counter.reducer
+export { add, minus, addAsync };
+export default counter.reducer;
