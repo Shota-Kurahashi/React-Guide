@@ -1,15 +1,21 @@
-import React from "react";
+import { useMemo } from "react";
 
-const Child = React.memo(({ countB, onClick }) => {
+const Child = ({ countB, onClick }) => {
   console.log("%cChild render", "color: red;");
 
-  return (
-    <div className="child">
-      <h2>子コンポーネント領域</h2>
-      <button onClick={onClick}>ボタンB</button>
-      <p>ボタンBクリック回数：{countB}</p>
-    </div>
-  );
-});
+  return useMemo(() => {
+    console.log("%cuseMemo", "color: green;");
+    return (
+      <div className="child">
+        <h2>子コンポーネント領域</h2>
+        <div>
+          <button onClick={onClick}>ボタンB</button>
+          <span>子のpropsに渡すstateを更新</span>
+        </div>
+        {/* <span>ボタンBクリック回数：{countB}</span> */}
+      </div>
+    );
+  }, [onClick]);
+};
 
 export default Child;
