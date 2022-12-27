@@ -1,8 +1,9 @@
 import { useCounter } from "../context/CounterContext";
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 const CounterResult = () => {
   // const state = useCounter();
-  const state = useSelector(state => state);
+  const state = useSelector((state) => state.counters);
+  console.log(state);
   return <h3>{state}</h3>;
 };
 
