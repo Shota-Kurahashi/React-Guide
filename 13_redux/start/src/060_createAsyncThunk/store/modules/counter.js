@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { asyncCount } from "../../api/counter";
 
@@ -21,18 +21,39 @@ const counter = createSlice({
       // return newState;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(addAsyncWithStatus.pending, (state) => {
+        state.status = "loading...";
+      })
+      .addCase(addAsyncWithStatus.fulfilled, (state, action) => {
+        state.status = "取得済";
+        state.count = state.count + action.payload;
+      })
+      .addCase(addAsyncWithStatus.rejected, (state) => {
+        state.status = "エラー";
+      });
+  },
 });
 
 const { add, minus } = counter.actions;
 
-const addAsync = (payload) => {
-  return async (dispatch, getState) => {
-    const state = getState();
-    console.log(state);
+const addAsyncWithStatus = createAsyncThunk(
+  "counter/asyncCount",
+  async (payload) => {
     const response = await asyncCount(payload);
-    dispatch(add(response.data));
-  };
-};
+    return response.data;
+  }
+);
 
-export { add, minus, addAsync };
+// const addAsync = (payload) => {
+//   return async (dispatch, getState) => {
+//     const state = getState();
+//     console.log(state);
+//     const response = await asyncCount(payload);
+//     dispatch(add(response.data));
+//   };
+// };
+
+export { add, minus, addAsyncWithStatus };
 export default counter.reducer;
