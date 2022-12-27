@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useTodo } from "../context/TodoProvider";
 const Form = () => {
   const { createTodo, enteredTodo, setEnteredTodo } = useTodo();

@@ -1,4 +1,3 @@
-import { useReducer } from "react";
 import Counter from "./components/Counter";
 import { CounterProvider } from "./context/CounterProvider";
 
