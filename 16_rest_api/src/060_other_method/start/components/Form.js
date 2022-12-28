@@ -1,19 +1,20 @@
 import { useState } from "react";
+import { todoApi } from "../api/todo";
 import { useDispatchTodos } from "../context/TodoContext";
 const Form = ({ createTodo }) => {
   const [enteredTodo, setEnteredTodo] = useState("");
   const dispatch = useDispatchTodos();
 
-  const addTodo = (e) => {
+  const addTodo = async (e) => {
     e.preventDefault();
 
     const newTodo = {
       id: Math.floor(Math.random() * 1e5),
       content: enteredTodo,
-      editing: false
+      editing: false,
     };
-
-    dispatch({ type: 'todo/add', todo: newTodo});
+    const res = await todoApi.post(newTodo);
+    dispatch({ type: "todo/add", todo: res });
 
     setEnteredTodo("");
   };
